@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 100 Hall of Fame</title>
+    <title>Legends of Top 100 - 25 Season Celebration</title>
     <style>
         * {
             margin: 0;
@@ -12,71 +12,181 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
             min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .header {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(0,0,0,0.3);
+        /* Header matching main site */
+        .site-header {
+            background: rgba(0,0,0,0.8);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             backdrop-filter: blur(10px);
         }
 
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            background: linear-gradient(45deg, #FFD700, #FFA500);
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .site-logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            padding: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .site-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Hero section */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            margin: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #333 0%, #666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
 
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            background: rgba(0,0,0,0.2);
-            padding: 1rem;
-        }
-
-        .tab-button {
-            background: transparent;
-            border: 2px solid #FFD700;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .tab-button.active, .tab-button:hover {
-            background: #FFD700;
-            color: #1e3c72;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255,215,0,0.4);
-        }
-
-        .content {
-            padding: 2rem;
-            max-width: 1200px;
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .tab-content {
-            display: none;
+        .hero-stat {
+            background: rgba(255,255,255,0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        .tab-content.active {
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Navigation tabs */
+        .content-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .content-tab {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #333;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-tab:hover,
+        .content-tab.active {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Main content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .content-section {
+            display: none;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .content-section.active {
             display: block;
             animation: fadeIn 0.5s ease-in;
         }
@@ -86,89 +196,163 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .trophy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .trophy-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .trophy-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .trophy-icon {
-            font-size: 3rem;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
             text-align: center;
             margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* Card layouts */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .legend-card {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .legend-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.25);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .achievement-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .achievement-tag {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-stat {
+            text-align: center;
+        }
+
+        .card-stat-number {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Rankings table */
+        .rankings-container {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .rankings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .rankings-table th {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .rankings-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .rankings-table tr:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .position-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            width: 60px;
         }
 
         .club-name {
-            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .title-count {
+            font-size: 1.3rem;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            color: #FFD700;
+            color: #333;
         }
 
-        .trophy-count {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #FFA500;
-        }
-
-        .manager-card {
-            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,165,0,0.1) 100%);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 1rem 0;
-            border-left: 5px solid #FFD700;
-            transition: all 0.3s ease;
-        }
-
-        .manager-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
-        }
-
-        .manager-name {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #FFD700;
-            margin-bottom: 0.5rem;
-        }
-
-        .manager-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #FFA500;
-        }
-
+        /* Timeline */
         .timeline {
             position: relative;
-            margin: 2rem 0;
+            padding: 2rem 0;
         }
 
         .timeline::before {
@@ -176,14 +360,15 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 2px;
+            width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, #FFD700, #FFA500);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+            border-radius: 2px;
         }
 
         .timeline-item {
             display: flex;
-            margin: 2rem 0;
+            margin: 3rem 0;
             align-items: center;
         }
 
@@ -192,20 +377,22 @@
         }
 
         .timeline-content {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 2rem;
             margin: 0 2rem;
             width: 45%;
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .timeline-year {
-            background: #FFD700;
-            color: #1e3c72;
+            background: rgba(0,0,0,0.8);
+            color: white;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -213,307 +400,835 @@
             font-size: 1.1rem;
             position: relative;
             z-index: 1;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-card h3 {
-            color: #FFD700;
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
             margin-bottom: 1rem;
         }
 
-        .big-number {
-            font-size: 3rem;
+        /* Articles layout */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .article-card {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .article-headline {
+            font-size: 1.4rem;
             font-weight: bold;
-            color: #FFA500;
+            color: #333;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .article-lead {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #444;
+            font-size: 1.1rem;
+        }
+
+        .article-text {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .main-nav {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+            }
+
+            .timeline-content {
+                width: 90%;
+                margin: 1rem 0;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .content-nav {
+                gap: 0.5rem;
+            }
+
+            .content-tab {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🏆 TOP 100 HALL OF FAME 🏆</h1>
-        <p>Celebrating 25 Seasons of Excellence • 10th Anniversary Edition</p>
-    </div>
-
-    <div class="nav-tabs">
-        <button class="tab-button active" onclick="showTab('clubs')">Legendary Clubs</button>
-        <button class="tab-button" onclick="showTab('managers')">Managerial Masters</button>
-        <button class="tab-button" onclick="showTab('timeline')">Historic Timeline</button>
-        <button class="tab-button" onclick="showTab('stats')">Record Books</button>
-    </div>
-
-    <div class="content">
-        <div id="clubs" class="tab-content active">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">🏆 DIVISION 1 CHAMPIONS HALL OF FAME 🏆</h2>
-            <div class="trophy-grid">
-                <div class="trophy-card">
-                    <div class="trophy-icon">👑</div>
-                    <div class="club-name">FC BARCELONA</div>
-                    <div class="trophy-count">10 TITLES</div>
-                    <p>The undisputed kings of Top 100. A dynasty that spans multiple eras under Scott Mckenzie's legendary management.</p>
-                    <small>Seasons: 2, 3, 6, 7, 9, 10, 11, 12, 15, 16</small>
-                </div>
-                
-                <div class="trophy-card">
-                    <div class="trophy-icon">🔵</div>
-                    <div class="club-name">CHELSEA FC</div>
-                    <div class="trophy-count">5 TITLES</div>
-                    <p>The Blues' golden era under James Mckenzie. Consistent excellence and tactical brilliance.</p>
-                    <small>Seasons: 13, 14, 17, 19, 21</small>
-                </div>
-                
-                <div class="trophy-card">
-                    <div class="trophy-icon">🟡</div>
-                    <div class="club-name">HELLAS VERONA</div>
-                    <div class="trophy-count">4 TITLES</div>
-                    <p>The modern giants! André Libras-Boas has transformed this Italian club into a powerhouse.</p>
-                    <small>Seasons: 20, 22, 23, 24 (Leading S25!)</small>
-                </div>
-                
-                <div class="trophy-card">
-                    <div class="trophy-icon">🔴</div>
-                    <div class="club-name">BAYERN MUNICH</div>
-                    <div class="trophy-count">3 TITLES</div>
-                    <p>German efficiency at its finest. Early dominance that set the standard for excellence.</p>
-                    <small>Seasons: 4, 5, 8</small>
-                </div>
+    <!-- Header matching main site -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="https://anotherurl.wordpress.com/wp-content/uploads/2025/06/high-resolution-logo-black-on-white-background.png" 
+                     alt="Top 100 Logo" class="site-logo">
+                <a href="#" class="site-title">TOP 100 LEGENDS</a>
             </div>
+            <nav class="main-nav">
+                <a href="https://smtop100.blog/" class="nav-link">Home</a>
+                <a href="https://smtop100.blog/stats/" class="nav-link">Stats</a>
+                <a href="https://smtop100.blog/about/" class="nav-link">About</a>
+                <a href="https://smtop100.blog/archives/" class="nav-link">Archives</a>
+            </nav>
+        </div>
+    </header>
 
-            <h2 style="text-align: center; margin: 3rem 0 2rem; color: #FFD700;">🏆 TOP 100 CUP CHAMPIONS 🏆</h2>
-            <div class="trophy-grid">
-                <div class="trophy-card">
-                    <div class="trophy-icon">🇩🇪</div>
-                    <div class="club-name">BAYERN MUNICH</div>
-                    <div class="trophy-count">4 CUPS</div>
-                    <p>Cup specialists proving their worth across multiple competitions.</p>
-                </div>
-                
-                <div class="trophy-card">
-                    <div class="trophy-icon">🇵🇹</div>
-                    <div class="club-name">FC PORTO</div>
-                    <div class="trophy-count">3 CUPS</div>
-                    <p>Portuguese mastery in knockout football.</p>
-                </div>
-                
-                <div class="trophy-card">
-                    <div class="trophy-icon">🇮🇹</div>
-                    <div class="club-name">HELLAS VERONA</div>
-                    <div class="trophy-count">3 CUPS</div>
-                    <p>Proving their dominance across all competitions.</p>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">🏆 LEGENDS OF TOP 100 🏆</h1>
+        <p class="hero-subtitle">25 Season Celebration • 10th Anniversary Special Edition</p>
+        
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="stat-number">25</span>
+                <span class="stat-label">Seasons</span>
+            </div>
+            <div class="hero-stat">
+                <span class="stat-number">125</span>
+                <span class="stat-label">Trophies</span>
+            </div>
+            <div class="hero-stat">
+                <span class="stat-number">100</span>
+                <span class="stat-label">Managers</span>
+            </div>
+            <div class="hero-stat">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Competitions</span>
             </div>
         </div>
+    </section>
 
-        <div id="managers" class="tab-content">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">🎖️ MANAGERIAL HALL OF FAME 🎖️</h2>
-            
-            <div class="manager-card">
-                <div class="manager-name">👑 SCOTT MCKENZIE - THE GOAT</div>
-                <p>The most successful manager in Top 100 history. Built Barcelona's dynasty with unprecedented consistency.</p>
-                <div class="manager-stats">
-                    <div class="stat">
-                        <div class="stat-number">8</div>
-                        <div>Division 1 Titles</div>
+    <!-- Content Navigation -->
+    <nav class="content-nav">
+        <div class="content-tab active" data-section="overview">Overview</div>
+        <div class="content-tab" data-section="ultimate-rankings">Ultimate Rankings</div>
+        <div class="content-tab" data-section="manager-legends">Manager Legends</div>
+        <div class="content-tab" data-section="competitions">Competitions</div>
+        <div class="content-tab" data-section="timeline">Timeline</div>
+        <div class="content-tab" data-section="achievements">Achievements</div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Overview Section -->
+        <section id="overview" class="content-section active">
+            <h2 class="section-title">Quarter-Century of Excellence</h2>
+            <p class="section-subtitle">From Manchester United's inaugural triumph to Hellas Verona's modern dynasty</p>
+
+            <div class="articles-grid">
+                <article class="article-card">
+                    <h3 class="article-headline">Scott Mckenzie: The GOAT</h3>
+                    <p class="article-lead">In the annals of Top 100 history, no name commands more respect than Scott Mckenzie.</p>
+                    <p class="article-text">With an unprecedented eight Division 1 titles, the Barcelona legend has established a record that may never be equalled. From his early triumphs in Seasons 2 and 3 to the remarkable four-peat of Seasons 9-12, Mckenzie's tactical brilliance and unwavering consistency have defined an era.</p>
+                </article>
+
+                <article class="article-card">
+                    <h3 class="article-headline">Hellas Verona: Modern Dynasty</h3>
+                    <p class="article-lead">As Season 25 reaches its climax, all eyes are on André Libras-Boas and his remarkable Hellas Verona project.</p>
+                    <p class="article-text">With four titles in five seasons and currently leading the championship race, they represent the new face of Top 100 excellence. What makes Hellas Verona special is their multi-competition mastery across all formats.</p>
+                </article>
+
+                <article class="article-card">
+                    <h3 class="article-headline">Barcelona: Supreme Dynasty</h3>
+                    <p class="article-lead">With 15 major trophies across all competitions, FC Barcelona stands alone as Top 100's most successful club.</p>
+                    <p class="article-text">Ten Division 1 titles form the backbone of their success, supplemented by four World Club Cup triumphs and a Youth Cup victory. Under Scott Mckenzie's guidance, they redefined what it meant to be champions.</p>
+                </article>
+
+                <article class="article-card">
+                    <h3 class="article-headline">Competition Specialists</h3>
+                    <p class="article-lead">While some clubs chase league glory, others have carved out specialist niches.</p>
+                    <p class="article-text">Heath Brown's Arsenal exemplifies this approach, claiming three World Club Cup titles. Salvatore Zerbo's incredible five consecutive Youth Cup victories with Levante showcase the value of specialization. André Guerra's mastery of knockout football demonstrates that excellence comes in many forms.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Ultimate Rankings -->
+        <section id="ultimate-rankings" class="content-section">
+            <h2 class="section-title">Ultimate Club Rankings</h2>
+            <p class="section-subtitle">Complete hierarchy across all competitions</p>
+
+            <div class="rankings-container">
+                <table class="rankings-table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Club</th>
+                            <th>Total Titles</th>
+                            <th>Breakdown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="position-number">1st</td>
+                            <td class="club-name">🔴 FC BARCELONA</td>
+                            <td class="title-count">15</td>
+                            <td>10 Div1 + 4 WCC + 1 Youth</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">2nd</td>
+                            <td class="club-name">🔴 BAYERN MUNICH</td>
+                            <td class="title-count">13</td>
+                            <td>3 Div1 + 4 Cup + 3 Shield + 2 WCC + 1 Youth</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">3rd</td>
+                            <td class="club-name">🟡 HELLAS VERONA</td>
+                            <td class="title-count">9</td>
+                            <td>4 Div1 + 3 Cup + 2 Shield</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">3rd</td>
+                            <td class="club-name">⚫ JUVENTUS</td>
+                            <td class="title-count">9</td>
+                            <td>2 Cup + 4 Shield + 3 Youth</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">5th</td>
+                            <td class="club-name">🔵 CHELSEA</td>
+                            <td class="title-count">8</td>
+                            <td>5 Div1 + 2 WCC + 1 Youth</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">5th</td>
+                            <td class="club-name">⚪ REAL MADRID</td>
+                            <td class="title-count">8</td>
+                            <td>1 Cup + 3 Shield + 4 WCC</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">7th</td>
+                            <td class="club-name">🔵 FC PORTO</td>
+                            <td class="title-count">7</td>
+                            <td>3 Cup + 3 Shield + 1 WCC</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">8th</td>
+                            <td class="club-name">🔴 ARSENAL</td>
+                            <td class="title-count">6</td>
+                            <td>1 Div1 + 1 Shield + 3 WCC + 1 Youth</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Complete Rankings -->
+        <section id="complete-rankings" class="content-section">
+            <h2 class="section-title">Complete Club Rankings</h2>
+            <p class="section-subtitle">All 8 competitions included - The full Top 100 ecosystem</p>
+
+            <div class="rankings-container">
+                <table class="rankings-table">
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Club</th>
+                            <th>Total Titles</th>
+                            <th>Complete Breakdown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="position-number">1st</td>
+                            <td class="club-name">🔴 FC BARCELONA</td>
+                            <td class="title-count">26</td>
+                            <td>10 Div1 + 4 WCC + 1 Youth + 1 WC Shield + 10 Charity</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">2nd</td>
+                            <td class="club-name">🔴 BAYERN MUNICH</td>
+                            <td class="title-count">17</td>
+                            <td>3 Div1 + 4 Cup + 3 Shield + 2 WCC + 1 Youth + 2 Youth Shield + 2 Charity</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">3rd</td>
+                            <td class="club-name">🟡 HELLAS VERONA</td>
+                            <td class="title-count">13</td>
+                            <td>4 Div1 + 3 Cup + 2 Shield + 1 WC Shield + 3 Charity</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">4th</td>
+                            <td class="club-name">🔵 CHELSEA</td>
+                            <td class="title-count">12</td>
+                            <td>5 Div1 + 2 WCC + 1 Youth + 2 WC Shield + 2 Charity</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">5th</td>
+                            <td class="club-name">⚫ JUVENTUS</td>
+                            <td class="title-count">12</td>
+                            <td>2 Cup + 4 Shield + 3 Youth + 1 Youth Shield + 2 Charity</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">6th</td>
+                            <td class="club-name">⚪ REAL MADRID</td>
+                            <td class="title-count">8</td>
+                            <td>1 Cup + 3 Shield + 4 WCC</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">7th</td>
+                            <td class="club-name">🔵 FC PORTO</td>
+                            <td class="title-count">9</td>
+                            <td>3 Cup + 3 Shield + 1 WCC + 2 Charity</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">8th</td>
+                            <td class="club-name">🔴 ARSENAL</td>
+                            <td class="title-count">7</td>
+                            <td>1 Div1 + 1 Shield + 3 WCC + 1 Youth + 1 Youth Shield</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">9th</td>
+                            <td class="club-name">🟠 LEICESTER CITY</td>
+                            <td class="title-count">5</td>
+                            <td>3 Youth Cup + 2 Youth Shield</td>
+                        </tr>
+                        <tr>
+                            <td class="position-number">10th</td>
+                            <td class="club-name">🔴 FC AUGSBURG</td>
+                            <td class="title-count">4</td>
+                            <td>3 World Club Shield + 1 Youth Shield</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); border-radius: 15px; padding: 2rem; margin-top: 2rem; border: 1px solid rgba(255,255,255,0.3);">
+                <h3 style="color: #333; margin-bottom: 1rem; text-align: center;">🏆 COMPETITION BREAKDOWN</h3>
+                <div class="card-grid">
+                    <div style="text-align: center;">
+                        <h4 style="color: #333; margin-bottom: 0.5rem;">Major Competitions (5)</h4>
+                        <p style="color: #666; font-size: 0.9rem;">Division 1, Cup, Shield, WCC, Youth Cup</p>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">2,667</div>
-                        <div>Career Points</div>
+                    <div style="text-align: center;">
+                        <h4 style="color: #333; margin-bottom: 0.5rem;">Secondary Competitions (3)</h4>
+                        <p style="color: #666; font-size: 0.9rem;">WC Shield, Youth Shield, Charity Shield</p>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">2.44</div>
-                        <div>Point Average</div>
+                </div>
+                <p style="color: #666; text-align: center; margin-top: 1rem; font-style: italic;">
+                    This complete ranking shows the full Top 100 ecosystem across all 8 competitions
+                </p>
+            </div>
+        </section>
+        <section id="manager-legends" class="content-section">
+            <h2 class="section-title">Managerial Legends</h2>
+            <p class="section-subtitle">The tactical minds who shaped Top 100 history</p>
+
+            <div class="card-grid">
+                <div class="legend-card">
+                    <div class="card-icon">👑</div>
+                    <h3 class="card-title">SCOTT MCKENZIE</h3>
+                    <p class="card-subtitle">The Greatest of All Time</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">8× Division 1 Champion</span>
+                        <span class="achievement-tag">1× WCC Winner</span>
+                        <span class="achievement-tag">2,667 Career Points</span>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">1,094</div>
-                        <div>Games Managed</div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <div class="card-stat-number">9</div>
+                            <div class="card-stat-label">Total Titles</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">2.44</div>
+                            <div class="card-stat-label">Average</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">1094</div>
+                            <div class="card-stat-label">Games</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">ANDRÉ LIBRAS-BOAS</h3>
+                    <p class="card-subtitle">The Multi-Competition Maestro</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">4× Division 1 Champion</span>
+                        <span class="achievement-tag">5× Knockout Winner</span>
+                        <span class="achievement-tag">Dynasty Builder</span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <div class="card-stat-number">9</div>
+                            <div class="card-stat-label">Total Titles</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">2.14</div>
+                            <div class="card-stat-label">Average</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">1063</div>
+                            <div class="card-stat-label">Games</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="legend-card">
+                    <div class="card-icon">🔵</div>
+                    <h3 class="card-title">JAMES MCKENZIE</h3>
+                    <p class="card-subtitle">The Modern Master</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">5× Division 1 Champion</span>
+                        <span class="achievement-tag">1× WCC Winner</span>
+                        <span class="achievement-tag">1× Youth Cup Winner</span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <div class="card-stat-number">7</div>
+                            <div class="card-stat-label">Total Titles</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">2.29</div>
+                            <div class="card-stat-label">Average</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">1149</div>
+                            <div class="card-stat-label">Games</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">⚔️</div>
+                    <h3 class="card-title">ANDRÉ GUERRA</h3>
+                    <p class="card-subtitle">The Knockout King</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">6× Knockout Champion</span>
+                        <span class="achievement-tag">1× WCC Winner</span>
+                        <span class="achievement-tag">FC Porto Legend</span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <div class="card-stat-number">7</div>
+                            <div class="card-stat-label">Total Titles</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">1.99</div>
+                            <div class="card-stat-label">Average</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">1123</div>
+                            <div class="card-stat-label">Games</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🌍</div>
+                    <h3 class="card-title">HEATH BROWN</h3>
+                    <p class="card-subtitle">The WCC Specialist</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">3× WCC Winner</span>
+                        <span class="achievement-tag">1× Division 1 Champion</span>
+                        <span class="achievement-tag">Arsenal Multi-Competition Success</span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <div class="card-stat-number">6</div>
+                            <div class="card-stat-label">Total Titles</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">2.08</div>
+                            <div class="card-stat-label">Average</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">1219</div>
+                            <div class="card-stat-label">Games</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🏆</div>
+                    <h3 class="card-title">SALVATORE ZERBO</h3>
+                    <p class="card-subtitle">The Youth Dynasty Builder</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">5× Youth Cup Winner</span>
+                        <span class="achievement-tag">Levante Legend</span>
+                        <span class="achievement-tag">5-Season Streak (S17-22)</span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat">
+                            <div class="card-stat-number">5</div>
+                            <div class="card-stat-label">Youth Titles</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-number">100%</div>
+                            <div class="card-stat-label">Success Rate</div>
+                        </div>
+                        <div class="card-stat">
+                            <div class="card-stat-label">Streak</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitions -->
+        <section id="competitions" class="content-section">
+            <h2 class="section-title">All Competition Masters</h2>
+            <p class="section-subtitle">Specialists across the complete Top 100 ecosystem</p>
+
+            <div class="card-grid">
+                <div class="legend-card">
+                    <div class="card-icon">🏅</div>
+                    <h3 class="card-title">DIVISION 1 LEGENDS</h3>
+                    <p class="card-subtitle">The ultimate prize - league supremacy</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Barcelona: 10 titles</span>
+                        <span class="achievement-tag">Chelsea: 5 titles</span>
+                        <span class="achievement-tag">Hellas Verona: 4 titles</span>
+                        <span class="achievement-tag">Bayern Munich: 3 titles</span>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🏆</div>
+                    <h3 class="card-title">TOP 100 CUP KINGS</h3>
+                    <p class="card-subtitle">Knockout excellence at its finest</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Bayern Munich: 4 titles</span>
+                        <span class="achievement-tag">FC Porto: 3 titles</span>
+                        <span class="achievement-tag">Hellas Verona: 3 titles</span>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3 class="card-title">SHIELD SPECIALISTS</h3>
+                    <p class="card-subtitle">Secondary knockout mastery</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Juventus: 4 titles</span>
+                        <span class="achievement-tag">Real Madrid: 3 titles</span>
+                        <span class="achievement-tag">FC Porto: 3 titles</span>
+                        <span class="achievement-tag">Bayern Munich: 3 titles</span>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🌍</div>
+                    <h3 class="card-title">WORLD CLUB CUP CHAMPIONS</h3>
+                    <p class="card-subtitle">International prestige competition</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Real Madrid: 4 titles</span>
+                        <span class="achievement-tag">Barcelona: 4 titles</span>
+                        <span class="achievement-tag">Arsenal: 3 titles</span>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">👶</div>
+                    <h3 class="card-title">YOUTH CUP LEGENDS</h3>
+                    <p class="card-subtitle">Developing the next generation</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Levante: 5 titles</span>
+                        <span class="achievement-tag">Juventus: 3 titles</span>
+                        <span class="achievement-tag">Manchester City: 3 titles</span>
+                        <span class="achievement-tag">Leicester City: 3 titles</span>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">WORLD CLUB SHIELD MASTERS</h3>
+                    <p class="card-subtitle">Secondary international competition</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">FC Augsburg: 3 titles</span>
+                        <span class="achievement-tag">Chelsea: 2 titles</span>
+                        <span class="achievement-tag">13 different winners</span>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🏃</div>
+                    <h3 class="card-title">YOUTH SHIELD SPECIALISTS</h3>
+                    <p class="card-subtitle">Youth development pathway</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Bayern Munich: 2 titles</span>
+                        <span class="achievement-tag">SL Benfica: 2 titles</span>
+                        <span class="achievement-tag">Leicester City: 2 titles</span>
+                    </div>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🎖️</div>
+                    <h3 class="card-title">CHARITY SHIELD CHAMPIONS</h3>
+                    <p class="card-subtitle">Pre-season supremacy</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Barcelona: 9 titles</span>
+                        <span class="achievement-tag">Bayern Munich: 3 titles</span>
+                        <span class="achievement-tag">Hellas Verona: 3 titles</span>
                     </div>
                 </div>
             </div>
 
-            <div class="manager-card">
-                <div class="manager-name">🔵 JAMES MCKENZIE - THE MODERN MASTER</div>
-                <p>Architect of Chelsea's golden era. Five Division 1 titles showcase tactical brilliance and consistency.</p>
-                <div class="manager-stats">
-                    <div class="stat">
-                        <div class="stat-number">5</div>
-                        <div>Division 1 Titles</div>
+            <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); border-radius: 15px; padding: 2rem; margin-top: 2rem; border: 1px solid rgba(255,255,255,0.3);">
+                <h3 style="color: #333; margin-bottom: 1.5rem; text-align: center;">🏆 SPECIALIST ACHIEVEMENTS</h3>
+                
+                <div class="articles-grid">
+                    <div>
+                        <h4 style="color: #333; margin-bottom: 1rem;">🥇 Barcelona's Charity Shield Dominance</h4>
+                        <p style="color: #666;">With 9 Charity Shield titles, Barcelona has dominated the pre-season curtain-raiser, showcasing their consistent excellence across multiple seasons.</p>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">2,627</div>
-                        <div>Career Points</div>
+                    
+                    <div>
+                        <h4 style="color: #333; margin-bottom: 1rem;">🔧 FC Augsburg's WC Shield Mastery</h4>
+                        <p style="color: #666;">FC Augsburg's 3 World Club Shield titles represent remarkable consistency in the secondary international competition.</p>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">2.29</div>
-                        <div>Point Average</div>
+                    
+                    <div>
+                        <h4 style="color: #333; margin-bottom: 1rem;">🏃 Leicester City's Youth Excellence</h4>
+                        <p style="color: #666;">With 3 Youth Cup and 2 Youth Shield titles, Leicester City has become a powerhouse in youth development competitions.</p>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">1,149</div>
-                        <div>Games Managed</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="manager-card">
-                <div class="manager-name">🟡 ANDRÉ LIBRAS-BOAS - THE CONTEMPORARY KING</div>
-                <p>Transformed Hellas Verona into modern giants. Four titles in five seasons is legendary stuff!</p>
-                <div class="manager-stats">
-                    <div class="stat">
-                        <div class="stat-number">4</div>
-                        <div>Division 1 Titles</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">2,274</div>
-                        <div>Career Points</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">2.14</div>
-                        <div>Point Average</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">1,063</div>
-                        <div>Games Managed</div>
+                    
+                    <div>
+                        <h4 style="color: #333; margin-bottom: 1rem;">🎯 Competition Diversity</h4>
+                        <p style="color: #666;">Across all 8 competitions, over 40 different clubs have claimed trophies, showcasing the competitive depth of Top 100.</p>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="manager-card">
-                <div class="manager-name">🏆 CUP SPECIALISTS</div>
-                <p>André Guerra, Bojan H, and André Libras-Boas lead with 3 Cup titles each. Masters of knockout football!</p>
-            </div>
-        </div>
+        <!-- Timeline -->
+        <section id="timeline" class="content-section">
+            <h2 class="section-title">25-Year Timeline</h2>
+            <p class="section-subtitle">A quarter-century of unforgettable moments</p>
 
-        <div id="timeline" class="tab-content">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">📅 25 SEASONS OF GREATNESS 📅</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>The Foundation (S1-S8)</h3>
-                        <p>Manchester United wins the inaugural season. Barcelona begins their dynasty under Scott Mckenzie. Bayern Munich establishes early dominance.</p>
+                        <h3 class="timeline-title">THE FOUNDATION ERA (S1-S8)</h3>
+                        <p><strong>S1:</strong> Manchester United wins inaugural Division 1 title under Joe Jordan</p>
+                        <p><strong>S2-S3:</strong> Barcelona begins dynasty under Scott Mckenzie</p>
+                        <p><strong>S4-S5:</strong> Bayern Munich establishes early dominance with Gursimran Brar</p>
+                        <p><strong>S6-S7:</strong> Barcelona continues reign under Scott Mckenzie</p>
+                        <p><strong>S8:</strong> Bayern Munich completes early trilogy under ruts66</p>
+                        <p><em>The foundations of Top 100 excellence were laid in these pioneering seasons.</em></p>
                     </div>
                     <div class="timeline-year">S1-8</div>
                 </div>
-                
+
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <h3>The Golden Era (S9-S16)</h3>
-                        <p>Barcelona reaches peak dominance with Scott Mckenzie. Chelsea emerges under James Mckenzie. The competition reaches new heights.</p>
+                        <h3 class="timeline-title">THE GOLDEN ERA (S9-S16)</h3>
+                        <p><strong>S9-S12:</strong> Barcelona's incredible four-peat under Scott Mckenzie</p>
+                        <p><strong>S13-S14:</strong> Chelsea's rise begins with James Mckenzie</p>
+                        <p><strong>S15-S16:</strong> Barcelona reclaims throne, Dan Wallace continues legacy</p>
+                        <p><em>This era represents the peak of sustained excellence, with Barcelona's four consecutive titles setting an unmatched standard.</em></p>
                     </div>
                     <div class="timeline-year">S9-16</div>
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>The Modern Age (S17-S24)</h3>
-                        <p>Hellas Verona's rise under André Libras-Boas. New dynasties emerge. The most competitive era in Top 100 history.</p>
-                    </div>
-                    <div class="timeline-year">S17-24</div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Anniversary Season (S25)</h3>
-                        <p>The 10th Anniversary! Hellas Verona leads the way, chasing their 5th title in 6 seasons. History in the making!</p>
-                    </div>
-                    <div class="timeline-year">S25</div>
-                </div>
-            </div>
-        </div>
 
-        <div id="stats" class="tab-content">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">📊 RECORD BOOKS 📊</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Seasons</h3>
-                    <div class="big-number">25</div>
-                    <p>A quarter-century of excellence</p>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">THE TRANSITION PERIOD (S17-S19)</h3>
+                        <p><strong>S17:</strong> Chelsea breaks Barcelona's dominance under James Mckenzie</p>
+                        <p><strong>S18:</strong> Arsenal's miracle season with Heath Brown</p>
+                        <p><strong>S19:</strong> Chelsea's return to glory</p>
+                        <p><em>Power began to shift as new tactical approaches emerged. Salvatore Zerbo's Levante youth dynasty also began during this era.</em></p>
+                    </div>
+                    <div class="timeline-year">S17-19</div>
                 </div>
-                
-                <div class="stat-card">
-                    <h3>Active Managers</h3>
-                    <div class="big-number">100</div>
-                    <p>Across 5 competitive divisions</p>
-                </div>
-                
-                <div class="stat-card">
-                    <h3>Most Successful Club</h3>
-                    <div class="big-number">10</div>
-                    <p>Barcelona Division 1 titles</p>
-                </div>
-                
-                <div class="stat-card">
-                    <h3>Greatest Manager</h3>
-                    <div class="big-number">8</div>
-                    <p>Scott Mckenzie's Division 1 titles</p>
-                </div>
-                
-                <div class="stat-card">
-                    <h3>Current Dynasty</h3>
-                    <div class="big-number">4/6</div>
-                    <p>Hellas Verona recent titles</p>
-                </div>
-                
-                <div class="stat-card">
-                    <h3>Competition Record</h3>
-                    <div class="big-number">24</div>
-                    <p>Different cup winners</p>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">THE MODERN DYNASTY (S20-S25)</h3>
+                        <p><strong>S20:</strong> Hellas Verona's first title under André Libras-Boas</p>
+                        <p><strong>S21:</strong> Chelsea's final championship, power shifts to Italy</p>
+                        <p><strong>S22-S24:</strong> Hellas Verona completes hat-trick of titles</p>
+                        <p><strong>S25:</strong> Anniversary season with Hellas Verona leading</p>
+                        <p><em>The current era showcases evolved tactical sophistication and the emergence of new dynasties.</em></p>
+                    </div>
+                    <div class="timeline-year">S20-25</div>
                 </div>
             </div>
-            
-            <div style="margin-top: 3rem; text-align: center; background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
-                <h3 style="color: #FFD700; margin-bottom: 1rem;">🏆 Season 25 Watch 🏆</h3>
-                <p style="font-size: 1.2rem;">Hellas Verona leads the table with one game remaining. Can André Libras-Boas deliver a 5th title in 6 seasons? History awaits...</p>
+        </section>
+
+        <!-- Achievements -->
+        <section id="achievements" class="content-section">
+            <h2 class="section-title">Greatest Achievements</h2>
+            <p class="section-subtitle">The records and feats that define Top 100 legends</p>
+
+            <div class="card-grid">
+                <div class="legend-card">
+                    <div class="card-icon">👑</div>
+                    <h3 class="card-title">MOST DIVISION 1 TITLES</h3>
+                    <p class="card-subtitle">Scott Mckenzie's Unprecedented Dominance</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">8 Championships</span>
+                        <span class="achievement-tag">Barcelona Dynasty</span>
+                        <span class="achievement-tag">S2, S3, S6, S7, S9-S12</span>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; text-align: center;">
+                        A record that may never be broken - the greatest individual achievement in Top 100 history
+                    </p>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🔥</div>
+                    <h3 class="card-title">LONGEST CONSECUTIVE STREAK</h3>
+                    <p class="card-subtitle">Salvatore Zerbo's Youth Cup Dynasty</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">5 Consecutive Titles</span>
+                        <span class="achievement-tag">Levante Mastery</span>
+                        <span class="achievement-tag">S17-S22</span>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; text-align: center;">
+                        Unparalleled consistency in youth development across half a decade
+                    </p>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🏆</div>
+                    <h3 class="card-title">MOST TOTAL TITLES (CLUB)</h3>
+                    <p class="card-subtitle">Barcelona's Ultimate Dominance</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">39 Total Trophies</span>
+                        <span class="achievement-tag">15 Major Competitions</span>
+                        <span class="achievement-tag">10 Secondary Competitions</span>
+                        <span class="achievement-tag">14 SMFA Competitions</span>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; text-align: center;">
+                        Barcelona's complete dominance - 39 total trophies across ALL 11 competitions
+                    </p>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">⚔️</div>
+                    <h3 class="card-title">KNOCKOUT SPECIALIST</h3>
+                    <p class="card-subtitle">André Guerra's Cup Mastery</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">6 Knockout Titles</span>
+                        <span class="achievement-tag">3 Cup + 3 Shield</span>
+                        <span class="achievement-tag">FC Porto Legend</span>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; text-align: center;">
+                        The undisputed master of knockout football in Top 100
+                    </p>
+                </div>
+                <div class="legend-card">
+                    <div class="card-icon">🌍</div>
+                    <h3 class="card-title">INTERNATIONAL KINGS</h3>
+                    <p class="card-subtitle">World Club Cup Domination</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">Real Madrid: 4 WCC</span>
+                        <span class="achievement-tag">Barcelona: 4 WCC</span>
+                        <span class="achievement-tag">Heath Brown: 3 WCC</span>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; text-align: center;">
+                        Excellence on the international stage across multiple eras
+                    </p>
+                </div>
+
+                <div class="legend-card">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">MODERN MULTI-MASTER</h3>
+                    <p class="card-subtitle">André Libras-Boas' Complete Success</p>
+                    <div class="achievement-tags">
+                        <span class="achievement-tag">9 Total Titles</span>
+                        <span class="achievement-tag">4 Division 1</span>
+                        <span class="achievement-tag">5 Knockout</span>
+                        <span class="achievement-tag">Current Dynasty</span>
+                    </div>
+                    <p style="color: #666; margin-top: 1rem; text-align: center;">
+                        Proving excellence across multiple competitions in the modern era
+                    </p>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <!-- Final celebration -->
+            <div style="background: rgba(255,255,255,0.2); backdrop-filter: blur(15px); border-radius: 20px; padding: 3rem; margin-top: 3rem; text-align: center; border: 1px solid rgba(255,255,255,0.3);">
+                <h3 style="font-size: 2.5rem; margin-bottom: 1rem; color: #333;">🎊 CELEBRATING 25 SEASONS 🎊</h3>
+                <p style="font-size: 1.3rem; margin-bottom: 2rem; color: #555;">
+                    From Manchester United's inaugural triumph to Hellas Verona's modern dynasty
+                </p>
+                <p style="font-size: 1.1rem; color: #666; line-height: 1.7; max-width: 800px; margin: 0 auto;">
+                    Top 100 has evolved from a simple competition into a thriving community of 100 managers across five competitive divisions. Through 25 seasons, we've witnessed tactical innovation, dramatic title races, and the emergence of legendary figures who have shaped the game. As we celebrate this milestone anniversary, we honor not just the winners, but every manager who has contributed to Top 100's rich tapestry.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <span style="background: rgba(0,0,0,0.8); color: white; padding: 1rem 2rem; border-radius: 25px; font-size: 1.2rem; font-weight: bold;">Here's to 25 More Seasons!</span>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
-        function showTab(tabName) {
-            // Hide all tab contents
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Remove active class from all buttons
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(button => button.classList.remove('active'));
-            
-            // Show selected tab and mark button as active
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
+        // Simple and robust navigation system
+        function initNavigation() {
+            const contentTabs = document.querySelectorAll('.content-tab');
+            const contentSections = document.querySelectorAll('.content-section');
 
-        // Add some interactive animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate trophy cards on scroll
-            const cards = document.querySelectorAll('.trophy-card, .manager-card');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+            contentTabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    const targetSection = this.getAttribute('data-section');
+                    
+                    // Remove active class from all tabs and sections
+                    contentTabs.forEach(function(t) {
+                        t.classList.remove('active');
+                    });
+                    contentSections.forEach(function(s) {
+                        s.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab and target section
+                    this.classList.add('active');
+                    const sectionElement = document.getElementById(targetSection);
+                    if (sectionElement) {
+                        sectionElement.classList.add('active');
                     }
+                    
+                    // Smooth scroll to content
+                    document.querySelector('.main-content').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
                 });
             });
-            
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initNavigation();
         });
     </script>
 </body>
