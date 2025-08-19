@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 100 Hall of Fame</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: 2px solid #FFD700;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .tab-button.active, .tab-button:hover {
+            background: #FFD700;
+            color: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .trophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .trophy-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .trophy-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .trophy-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .club-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        .trophy-count {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #FFA500;
+        }
+
+        .manager-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,165,0,0.1) 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            border-left: 5px solid #FFD700;
+            transition: all 0.3s ease;
+        }
+
+        .manager-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+        }
+
+        .manager-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .manager-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFA500;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #FFD700, #FFA500);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 2rem 0;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 0 2rem;
+            width: 45%;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-year {
+            background: #FFD700;
+            color: #1e3c72;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card h3 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .big-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏆 TOP 100 HALL OF FAME 🏆</h1>
+        <p>Celebrating 25 Seasons of Excellence • 10th Anniversary Edition</p>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-button active" onclick="showTab('clubs')">Legendary Clubs</button>
+        <button class="tab-button" onclick="showTab('managers')">Managerial Masters</button>
+        <button class="tab-button" onclick="showTab('timeline')">Historic Timeline</button>
+        <button class="tab-button" onclick="showTab('stats')">Record Books</button>
+    </div>
+
+    <div class="content">
+        <div id="clubs" class="tab-content active">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">🏆 DIVISION 1 CHAMPIONS HALL OF FAME 🏆</h2>
+            <div class="trophy-grid">
+                <div class="trophy-card">
+                    <div class="trophy-icon">👑</div>
+                    <div class="club-name">FC BARCELONA</div>
+                    <div class="trophy-count">10 TITLES</div>
+                    <p>The undisputed kings of Top 100. A dynasty that spans multiple eras under Scott Mckenzie's legendary management.</p>
+                    <small>Seasons: 2, 3, 6, 7, 9, 10, 11, 12, 15, 16</small>
+                </div>
+                
+                <div class="trophy-card">
+                    <div class="trophy-icon">🔵</div>
+                    <div class="club-name">CHELSEA FC</div>
+                    <div class="trophy-count">5 TITLES</div>
+                    <p>The Blues' golden era under James Mckenzie. Consistent excellence and tactical brilliance.</p>
+                    <small>Seasons: 13, 14, 17, 19, 21</small>
+                </div>
+                
+                <div class="trophy-card">
+                    <div class="trophy-icon">🟡</div>
+                    <div class="club-name">HELLAS VERONA</div>
+                    <div class="trophy-count">4 TITLES</div>
+                    <p>The modern giants! André Libras-Boas has transformed this Italian club into a powerhouse.</p>
+                    <small>Seasons: 20, 22, 23, 24 (Leading S25!)</small>
+                </div>
+                
+                <div class="trophy-card">
+                    <div class="trophy-icon">🔴</div>
+                    <div class="club-name">BAYERN MUNICH</div>
+                    <div class="trophy-count">3 TITLES</div>
+                    <p>German efficiency at its finest. Early dominance that set the standard for excellence.</p>
+                    <small>Seasons: 4, 5, 8</small>
+                </div>
+            </div>
+
+            <h2 style="text-align: center; margin: 3rem 0 2rem; color: #FFD700;">🏆 TOP 100 CUP CHAMPIONS 🏆</h2>
+            <div class="trophy-grid">
+                <div class="trophy-card">
+                    <div class="trophy-icon">🇩🇪</div>
+                    <div class="club-name">BAYERN MUNICH</div>
+                    <div class="trophy-count">4 CUPS</div>
+                    <p>Cup specialists proving their worth across multiple competitions.</p>
+                </div>
+                
+                <div class="trophy-card">
+                    <div class="trophy-icon">🇵🇹</div>
+                    <div class="club-name">FC PORTO</div>
+                    <div class="trophy-count">3 CUPS</div>
+                    <p>Portuguese mastery in knockout football.</p>
+                </div>
+                
+                <div class="trophy-card">
+                    <div class="trophy-icon">🇮🇹</div>
+                    <div class="club-name">HELLAS VERONA</div>
+                    <div class="trophy-count">3 CUPS</div>
+                    <p>Proving their dominance across all competitions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="managers" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">🎖️ MANAGERIAL HALL OF FAME 🎖️</h2>
+            
+            <div class="manager-card">
+                <div class="manager-name">👑 SCOTT MCKENZIE - THE GOAT</div>
+                <p>The most successful manager in Top 100 history. Built Barcelona's dynasty with unprecedented consistency.</p>
+                <div class="manager-stats">
+                    <div class="stat">
+                        <div class="stat-number">8</div>
+                        <div>Division 1 Titles</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2,667</div>
+                        <div>Career Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2.44</div>
+                        <div>Point Average</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1,094</div>
+                        <div>Games Managed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="manager-card">
+                <div class="manager-name">🔵 JAMES MCKENZIE - THE MODERN MASTER</div>
+                <p>Architect of Chelsea's golden era. Five Division 1 titles showcase tactical brilliance and consistency.</p>
+                <div class="manager-stats">
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div>Division 1 Titles</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2,627</div>
+                        <div>Career Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2.29</div>
+                        <div>Point Average</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1,149</div>
+                        <div>Games Managed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="manager-card">
+                <div class="manager-name">🟡 ANDRÉ LIBRAS-BOAS - THE CONTEMPORARY KING</div>
+                <p>Transformed Hellas Verona into modern giants. Four titles in five seasons is legendary stuff!</p>
+                <div class="manager-stats">
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div>Division 1 Titles</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2,274</div>
+                        <div>Career Points</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2.14</div>
+                        <div>Point Average</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1,063</div>
+                        <div>Games Managed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="manager-card">
+                <div class="manager-name">🏆 CUP SPECIALISTS</div>
+                <p>André Guerra, Bojan H, and André Libras-Boas lead with 3 Cup titles each. Masters of knockout football!</p>
+            </div>
+        </div>
+
+        <div id="timeline" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">📅 25 SEASONS OF GREATNESS 📅</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Foundation (S1-S8)</h3>
+                        <p>Manchester United wins the inaugural season. Barcelona begins their dynasty under Scott Mckenzie. Bayern Munich establishes early dominance.</p>
+                    </div>
+                    <div class="timeline-year">S1-8</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Golden Era (S9-S16)</h3>
+                        <p>Barcelona reaches peak dominance with Scott Mckenzie. Chelsea emerges under James Mckenzie. The competition reaches new heights.</p>
+                    </div>
+                    <div class="timeline-year">S9-16</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Modern Age (S17-S24)</h3>
+                        <p>Hellas Verona's rise under André Libras-Boas. New dynasties emerge. The most competitive era in Top 100 history.</p>
+                    </div>
+                    <div class="timeline-year">S17-24</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Anniversary Season (S25)</h3>
+                        <p>The 10th Anniversary! Hellas Verona leads the way, chasing their 5th title in 6 seasons. History in the making!</p>
+                    </div>
+                    <div class="timeline-year">S25</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="stats" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #FFD700;">📊 RECORD BOOKS 📊</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Seasons</h3>
+                    <div class="big-number">25</div>
+                    <p>A quarter-century of excellence</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Active Managers</h3>
+                    <div class="big-number">100</div>
+                    <p>Across 5 competitive divisions</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Most Successful Club</h3>
+                    <div class="big-number">10</div>
+                    <p>Barcelona Division 1 titles</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Greatest Manager</h3>
+                    <div class="big-number">8</div>
+                    <p>Scott Mckenzie's Division 1 titles</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Current Dynasty</h3>
+                    <div class="big-number">4/6</div>
+                    <p>Hellas Verona recent titles</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Competition Record</h3>
+                    <div class="big-number">24</div>
+                    <p>Different cup winners</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center; background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px;">
+                <h3 style="color: #FFD700; margin-bottom: 1rem;">🏆 Season 25 Watch 🏆</h3>
+                <p style="font-size: 1.2rem;">Hellas Verona leads the table with one game remaining. Can André Libras-Boas deliver a 5th title in 6 seasons? History awaits...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab and mark button as active
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate trophy cards on scroll
+            const cards = document.querySelectorAll('.trophy-card, .manager-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
